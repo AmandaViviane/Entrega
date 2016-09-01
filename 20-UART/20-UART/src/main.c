@@ -73,7 +73,7 @@ void UART0_Handler(void){
 	
 	byteCount++;
 	
-	if (byteCount == 3)
+	if (byteCount == 4)
 	{
 		byteCount = 0;
 	}
@@ -108,9 +108,7 @@ void config_uart(void){
 /************************************************************************/
 static void display_menu(void)
 {
-	puts(" 1 : exibe novamente esse menu \n\r"
-		 " 2 : Ativa o LED  \n\r"
-		 " 3 : Desliga o LED \n\r ");
+	puts("Online");
 }
 
 
@@ -158,7 +156,8 @@ static void configure_tc(uint16_t frequency)
     *   2 - Canal a ser configurado (0,1,2)
     *   3 - Configurações do TC :
     *
-    *   Configurações de modo de operação :
+    * 
+  Configurações de modo de operação :
 	*	    TC_CMR_ABETRG  : TIOA or TIOB External Trigger Selection 
 	*	    TC_CMR_CPCTRG  : RC Compare Trigger Enable 
 	*	    TC_CMR_WAVE    : Waveform Mode 
@@ -325,7 +324,7 @@ int main(void)
 		 " ---------------------------- \n\r");*/
 		 
 	/* display main menu */
-	/*display_menu();*/
+	display_menu();
 	
 	
 
@@ -372,16 +371,42 @@ int main(void)
 			case '2':
 			blinkRed = 1;
 			break;			
+		} 
+		switch(rx[3]){
+			
+			case '1':
+			tc_write_rc(TC0, 0, 32768);		
+			break;
+			case '2':
+			tc_write_rc(TC0, 0, 32768/2);		
+			break;
+			case '3':
+			tc_write_rc(TC0, 0, 32768/3);		
+			break;
+			case '4':
+			tc_write_rc(TC0, 0, 32768/4);		
+			break;
+			case '5':
+			tc_write_rc(TC0, 0, 32768/5);		
+			break;
+			case '6':
+			tc_write_rc(TC0, 0, 32768/6);		
+			break;
+			case '7':
+			tc_write_rc(TC0, 0, 32768/7);		
+			break;
+			case '8':
+			tc_write_rc(TC0, 0, 32768/8);		
+			break;		
+			case '9':
+			tc_write_rc(TC0, 0, 32768/9);		
+			break;		
+					
+			
+					
+					
 		}
 		
-		
-		
-		
-	
-		
-		
-		
-		
-			
+				
 	}
 }
